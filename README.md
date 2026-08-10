@@ -1,5 +1,4 @@
-# PTEN/UCEC OCSEF Reproducible Extension
-
+# PTEN/UCEC Reproducible Survival Analysis
 ## Purpose
 
 This package contains four linked analyses:
@@ -7,7 +6,7 @@ This package contains four linked analyses:
 1. **Phase 1 — Independent survival rerun:** Rebuilds the PTEN altered-versus-unaltered overall-survival analysis from the supplied Firehose Legacy exports.
 2. **Phase 2 — New molecular-subtype analysis:** Tests whether PTEN alteration frequency differs across the four TCGA-UCEC molecular subtypes using supplied PanCancer Atlas clinical files.
 3. **Phase 3 — Adjusted survival analysis:** Fits PTEN-only, age/stage-adjusted, and age/stage/subtype-adjusted Cox models on the same complete-case cohort, with proportional-hazards diagnostics and a stratified sensitivity model.
-4. **Phase 4 — Direct PTEN reconstruction and final figures:** Reconstructs PTEN status from the supplied mutation and discrete CNA tables and creates three poster-ready figures.
+4. **Phase 4 — Direct PTEN reconstruction and final figures:** Reconstructs PTEN status from the supplied mutation and discrete CNA tables and creates three final figures.
 
 The package is designed so another person can keep only the raw files and master notebook, run all cells, and recreate the processed datasets, exclusion records, statistics, and figures.
 
@@ -115,7 +114,7 @@ The unadjusted association attenuated after adjustment. A stage- and subtype-str
 - 26 samples had a high-level PTEN CNA (-2 or +2); six also had a mutation.
 - The reconstructed label matched the supplied portal label for 549/549 samples.
 
-The three recommended poster figures are:
+The three recommended figures are:
 
 - `figures/final_01_kaplan_meier.png`
 - `figures/final_02_subtype_frequency.png`
@@ -165,7 +164,7 @@ PTEN-UCEC-survival-analysis/
    ```
 
 10. Review `results/PTEN_status_reconstruction_validation.csv`, `results/PTEN_adjustment_comparison.csv`, `results/final_key_findings.csv`, and the amplification-excluded sensitivity output files.
-## Interpretation language for judges
+## Interpretation of findings
 
 > I exactly reconstructed the supplied PTEN label from mutation and high-level copy-number data. My independent survival rerun supported the portal's general unadjusted association but did not reproduce its exact cohort. PTEN alteration frequency differed substantially across molecular subtypes, and the survival association disappeared after adjustment for age, stage, and subtype. Therefore, this dataset does not support PTEN alteration as an independent survival predictor, although PTEN remains biologically important in UCEC.
 
