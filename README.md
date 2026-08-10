@@ -47,7 +47,8 @@ Can the supplied portal-defined PTEN altered/unaltered label be reproduced exact
 - Study ID: `ucec_tcga_pan_can_atlas_2018`
 - Files supplied for this project on July 14, 2026
 
-The raw files are preserved unchanged in `data_raw/`.
+The raw TCGA-derived data files are not redistributed in this public repository. The source studies are publicly available through cBioPortal: [Uterine Corpus Endometrial Carcinoma, Firehose Legacy](https://www.cbioportal.org/study/summary?id=ucec_tcga) (study ID: `ucec_tcga`) and [Uterine Corpus Endometrial Carcinoma, PanCancer Atlas](https://www.cbioportal.org/study/summary?id=ucec_tcga_pan_can_atlas_2018) (study ID: `ucec_tcga_pan_can_atlas_2018`). To reproduce the analysis, obtain the required files identified in the master notebook, preserve their documented filenames, and place them in a folder named `data_raw/` before running the notebook.
+
 
 ## Why the subtype analysis uses 507 tumors rather than the 498-patient survival cohort
 
@@ -124,38 +125,46 @@ Vector PDF versions are saved beside the PNG files.
 
 ## Folder structure
 
-```text
-PTEN_UCEC_OCSEF_Reproducible_Extension/
+PTEN-UCEC-survival-analysis/
 ├── README.md
 ├── requirements.txt
 ├── PTEN_UCEC_OCSEF_master_notebook.ipynb
-├── ocsef_finalization.py
-├── OCSEF_SUBMISSION_GUIDE.md
+├── PTEN_amplification_excluded_sensitivity.py
 ├── VALIDATION_REPORT.md
 ├── ANALYSIS_NOTES.md
-├── DATA_DICTIONARY.md
-├── data_raw/
-├── data_processed/
-├── results/
-├── figures/
-└── reference/
-```
+└── DATA_DICTIONARY.md
 
 ## How to run
 
 1. Install Python 3.11 or newer.
-2. Open a terminal in this project folder.
-3. Install packages:
+2. Download or clone this repository and open a terminal in the project folder.
+3. Create a folder named `data_raw/`.
+4. Obtain the public TCGA-derived source files from the cBioPortal studies identified above and place the required files in `data_raw/` using these filenames:
+
+   - `Supplementary_Table_S1_PTEN_altered_unaltered_sample_matrix.tsv`
+   - `Supplementary_Table_S2_PTEN_discrete_CNA_table.tsv`
+   - `Supplementary_Table_S3_PTEN_mutation_table.tsv`
+   - `Supplementary_Table_S4_cBioPortal_clinical_survival_table.tsv`
+   - `Supplementary_Table_S5_cBioPortal_PTEN_survival_summary_table.tsv`
+   - `data_clinical_patient.txt`
+   - `data_clinical_sample.txt`
+
+5. Install the required packages:
 
    ```bash
    pip install -r requirements.txt
    ```
 
-4. Open `PTEN_UCEC_OCSEF_master_notebook.ipynb`.
-5. Select **Restart Kernel and Run All Cells**.
-6. Confirm that all 20 code cells finish without errors and that `data_processed/`, `results/`, and `figures/` are recreated.
-7. Check `results/PTEN_status_reconstruction_validation.csv`, `results/PTEN_adjustment_comparison.csv`, and `results/final_key_findings.csv` for the final values.
+6. Open `PTEN_UCEC_OCSEF_master_notebook.ipynb`.
+7. Select **Restart Kernel and Run All Cells**.
+8. Confirm that all 20 code cells finish without errors and that the `data_processed/`, `results/`, and `figures/` folders are created.
+9. After the notebook finishes, run the amplification-excluded sensitivity analysis:
 
+   ```bash
+   python PTEN_amplification_excluded_sensitivity.py
+   ```
+
+10. Review `results/PTEN_status_reconstruction_validation.csv`, `results/PTEN_adjustment_comparison.csv`, `results/final_key_findings.csv`, and the amplification-excluded sensitivity output files.
 ## Interpretation language for judges
 
 > I exactly reconstructed the supplied PTEN label from mutation and high-level copy-number data. My independent survival rerun supported the portal's general unadjusted association but did not reproduce its exact cohort. PTEN alteration frequency differed substantially across molecular subtypes, and the survival association disappeared after adjustment for age, stage, and subtype. Therefore, this dataset does not support PTEN alteration as an independent survival predictor, although PTEN remains biologically important in UCEC.
