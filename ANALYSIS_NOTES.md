@@ -63,6 +63,6 @@ The PTEN status matrix comes from the Firehose Legacy analysis, while the subtyp
 
 The proportional-hazards test flagged advanced stage and the MSI subtype indicator in the fully adjusted model. A sensitivity model stratified by stage and subtype allowed different baseline hazards across those groups. Its PTEN estimate remained null (HR 1.139, 95% CI 0.623–2.080; p=0.6732), supporting the primary conclusion without claiming that every model assumption was perfect.
 
-## What is new for OCSEF
+## Scope of the extension
 
-The published manuscript relied mainly on portal-generated descriptive outputs. The current continuation work adds direct PTEN-label reconstruction, patient-level cohort cleaning and exclusion audits, an independent survival rerun, molecular-subtype association testing, multivariable and stratified Cox models, model diagnostics, reproducible code, and poster-ready figures. These new analyses—not the previously published portal outputs—should dominate the abstract, display, and interview.
+The published manuscript relied mainly on portal-generated descriptive outputs. The current continuation work adds direct PTEN-label reconstruction, patient-level cohort cleaning and exclusion audits, an independent survival rerun, molecular-subtype association testing, multivariable and stratified Cox models, model diagnostics, reproducible code, and final figures. These new analyses are distinct from the previously published portal outputs and define the scope of this extension.
