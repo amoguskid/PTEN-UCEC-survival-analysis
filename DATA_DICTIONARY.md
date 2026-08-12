@@ -1,5 +1,14 @@
 # Data Dictionary for Main Phase 2 Outputs
 
+## Phase 4 raw inputs
+
+`Supplementary_Table_S2_PTEN_discrete_CNA_table.tsv` uses `SAMPLE_ID` for the
+sample identifier and `PTEN` for the discrete CNA value.  The supplied
+`Supplementary_Table_S3_PTEN_mutation_table.tsv` uses `Gene` and `Sample ID`.
+The finalization script also accepts the documented cBioPortal alternatives
+`sampleId` or `Tumor_Sample_Barcode` for sample identifiers and `Hugo_Symbol`
+or `HUGO_SYMBOL` for the gene name.
+
 ## `data_processed/subtype_analysis_dataset.csv`
 
 | Column | Meaning |

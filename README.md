@@ -126,12 +126,17 @@ Vector PDF versions are saved beside the PNG files.
 
 PTEN-UCEC-survival-analysis/
 ├── README.md
+├── DATA_DICTIONARY.md
 ├── requirements.txt
 ├── PTEN_UCEC_OCSEF_master_notebook.ipynb
+├── ocsef_finalization.py
 ├── PTEN_amplification_excluded_sensitivity.py
 ├── VALIDATION_REPORT.md
 ├── ANALYSIS_NOTES.md
-└── DATA_DICTIONARY.md
+├── data_raw/       # user-supplied source tables
+├── data_processed/ # generated analysis datasets
+├── results/        # generated tabular results
+└── figures/        # generated PNG and PDF figures
 
 ## How to run
 
@@ -155,7 +160,9 @@ PTEN-UCEC-survival-analysis/
    ```
 
 6. Open `PTEN_UCEC_OCSEF_master_notebook.ipynb`.
-7. Select **Restart Kernel and Run All Cells**.
+7. Select **Restart Kernel and Run All Cells**. The notebook runs Phases 1–3 in
+   order and then invokes `ocsef_finalization.py` for Phase 4; do not run the
+   finalization script before the earlier phases have written their result tables.
 8. Confirm that all 20 code cells finish without errors and that the `data_processed/`, `results/`, and `figures/` folders are created.
 9. After the notebook finishes, run the amplification-excluded sensitivity analysis:
 
@@ -163,7 +170,7 @@ PTEN-UCEC-survival-analysis/
    python PTEN_amplification_excluded_sensitivity.py
    ```
 
-10. Review `results/PTEN_status_reconstruction_validation.csv`, `results/PTEN_adjustment_comparison.csv`, `results/final_key_findings.csv`, and the amplification-excluded sensitivity output files.
+10. Review `results/PTEN_status_reconstruction_summary.csv`, `results/PTEN_adjustment_comparison.csv`, `results/final_key_findings.csv`, and the amplification-excluded sensitivity output files.
 ## Interpretation of findings
 
 > I exactly reconstructed the supplied PTEN label from mutation and high-level copy-number data. My independent survival rerun supported the portal's general unadjusted association but did not reproduce its exact cohort. PTEN alteration frequency differed substantially across molecular subtypes, and the survival association disappeared after adjustment for age, stage, and subtype. Therefore, this dataset does not support PTEN alteration as an independent survival predictor, although PTEN remains biologically important in UCEC.
