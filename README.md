@@ -46,7 +46,32 @@ Can the supplied portal-defined PTEN altered/unaltered label be reproduced exact
 - Study ID: `ucec_tcga_pan_can_atlas_2018`
 - Files supplied for this project on July 14, 2026
 
-The raw TCGA-derived data files are not redistributed in this public repository. The source studies are publicly available through cBioPortal: [Uterine Corpus Endometrial Carcinoma, Firehose Legacy](https://www.cbioportal.org/study/summary?id=ucec_tcga) (study ID: `ucec_tcga`) and [Uterine Corpus Endometrial Carcinoma, PanCancer Atlas](https://www.cbioportal.org/study/summary?id=ucec_tcga_pan_can_atlas_2018) (study ID: `ucec_tcga_pan_can_atlas_2018`). To reproduce the analysis, obtain the required files identified in the master notebook, preserve their documented filenames, and place them in a folder named `data_raw/` before running the notebook.
+The raw TCGA-derived data files are not redistributed in this public repository. The source studies are publicly available through cBioPortal: [Uterine Corpus Endometrial Carcinoma, Firehose Legacy](https://www.cbioportal.org/study/summary?id=ucec_tcga) (study ID: `ucec_tcga`) and [Uterine Corpus Endometrial Carcinoma, PanCancer Atlas](https://www.cbioportal.org/study/summary?id=ucec_tcga_pan_can_atlas_2018) (study ID: `ucec_tcga_pan_can_atlas_2018`).
+
+## Exact input-file acquisition and construction
+
+Create `data_raw/` and put the seven files below in it. cBioPortal's **Download** tab
+provides the study archive; its **Query** results provide the table-download menus.
+Use all samples in the indicated study and query the single gene `PTEN`. Do not use
+the PanCancer Atlas release for S1--S5: release mixing is limited to the explicitly
+documented subtype join.
+
+| Required filename | Study ID | Direct or derived | Exact construction and required columns |
+|---|---|---|---|
+| `Supplementary_Table_S1_PTEN_altered_unaltered_sample_matrix.tsv` | `ucec_tcga` | Derived from the PTEN query's downloaded sample-by-gene/OncoPrint data | Retain one row for each of the 549 queried samples. `studyID:sampleId` must be `ucec_tcga:<SAMPLE_ID>`; `PTEN` is the downloaded PTEN alteration annotation; set integer `Altered` to 1 when the query reports any PTEN mutation or discrete CNA of -2 or +2, otherwise 0. Required columns: `studyID:sampleId`, `Altered`, `PTEN`. |
+| `Supplementary_Table_S2_PTEN_discrete_CNA_table.tsv` | `ucec_tcga` | Derived by transposing/filtering the study archive's discrete GISTIC CNA file to PTEN | Select the `PTEN` gene row, transpose it to one row per queried sample, and prepend `ucec_tcga:` to each sample ID. Keep GISTIC values as integers (-2, -1, 0, 1, 2). Required columns: `studyID:sampleId`, `PTEN`; include the same 549 samples and use the required filename. |
+| `Supplementary_Table_S3_PTEN_mutation_table.tsv` | `ucec_tcga` | Direct PTEN-only mutation-table export from Query Results → Mutations (a filtered copy of `data_mutations_extended.txt` is equivalent) | Export/filter records where `Hugo_Symbol` is `PTEN`; do not deduplicate distinct variants. Required identifier is `studyID:sampleId`, `SAMPLE_ID`, or `Tumor_Sample_Barcode`; if building from the archive, rename/copy `Tumor_Sample_Barcode` to `studyID:sampleId` and prefix it with `ucec_tcga:`. Retain `Hugo_Symbol`; an optional `PTEN` annotation column is accepted. |
+| `Supplementary_Table_S4_cBioPortal_clinical_survival_table.tsv` | `ucec_tcga` | Derived patient-level table from the Query Results clinical-data export | Select one representative tumor sample per patient and retain the portal patient/sample IDs and clinical fields. Required columns: `patientId`, `sampleId`, `OS_MONTHS`, `OS_STATUS`; the notebook also carries through `AGE`, `CLINICAL_STAGE`, `GRADE`, `HISTOLOGICAL_DIAGNOSIS`, and `RACE`, so retain those columns (blank values are allowed). Preserve the 500 exported patient rows and the exact required filename. |
+| `Supplementary_Table_S5_cBioPortal_PTEN_survival_summary_table.tsv` | `ucec_tcga` | Derived by downloading/transcribing the PTEN query's Comparison/Survival summary, not patient-level data | Make one row per displayed survival endpoint, including the `overall` row. Required columns (including spelling and punctuation): `Survival Type`, `Number of Patients`, `# in Altered group`, `# in Unaltered group`, `p-Value`. Values must be the portal results for that saved all-sample PTEN query. |
+| `data_clinical_patient.txt` | `ucec_tcga_pan_can_atlas_2018` | Direct, unedited file from the PanCancer Atlas study archive | Required columns: `PATIENT_ID`, `SUBTYPE`, `CANCER_TYPE_ACRONYM`, `IN_PANCANPATHWAYS_FREEZE`. Keep cBioPortal's leading `#` metadata lines and filename. |
+| `data_clinical_sample.txt` | `ucec_tcga_pan_can_atlas_2018` | Direct, unedited file from the PanCancer Atlas study archive | Required columns: `PATIENT_ID`, `SAMPLE_ID`, `SAMPLE_TYPE`. Keep cBioPortal's leading `#` metadata lines and filename. The supplied selection contains 529 unique primary samples. |
+
+Before running, check that tab delimiters and headers have not been changed by a
+spreadsheet program. S1, S2, S4, and S5 are deliberately named derived
+supplementary tables: they are not files with those names in a cBioPortal archive.
+The two `data_clinical_*.txt` files are direct archive files. Phase 4 validates the
+expected reconstruction counts and stops rather than silently continuing if any
+input was built from a different query or release.
 
 
 ## Why the subtype analysis uses 507 tumors rather than the 498-patient survival cohort
