@@ -124,14 +124,21 @@ Vector PDF versions are saved beside the PNG files.
 
 ## Folder structure
 
+```text
 PTEN-UCEC-survival-analysis/
 ├── README.md
 ├── requirements.txt
 ├── PTEN_UCEC_OCSEF_master_notebook.ipynb
+├── ocsef_finalization.py
 ├── PTEN_amplification_excluded_sensitivity.py
 ├── VALIDATION_REPORT.md
 ├── ANALYSIS_NOTES.md
-└── DATA_DICTIONARY.md
+├── DATA_DICTIONARY.md
+├── data_raw/          # user-supplied source files (not committed)
+├── data_processed/    # generated analysis datasets
+├── results/           # generated tables and validation records
+└── figures/           # generated PNG and PDF figures
+```
 
 ## How to run
 
@@ -156,8 +163,8 @@ PTEN-UCEC-survival-analysis/
 
 6. Open `PTEN_UCEC_OCSEF_master_notebook.ipynb`.
 7. Select **Restart Kernel and Run All Cells**.
-8. Confirm that all 20 code cells finish without errors and that the `data_processed/`, `results/`, and `figures/` folders are created.
-9. After the notebook finishes, run the amplification-excluded sensitivity analysis:
+8. Confirm that all 20 code cells, including the final Phase 4 cell, finish without errors and that the `data_processed/`, `results/`, and `figures/` folders are created. The final cell runs `ocsef_finalization.py`; it can also be rerun independently with `python ocsef_finalization.py` after Phases 1–3 have completed.
+9. After Phase 4 finishes, run the optional amplification-excluded sensitivity analysis:
 
    ```bash
    python PTEN_amplification_excluded_sensitivity.py
