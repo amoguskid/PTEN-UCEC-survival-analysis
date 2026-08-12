@@ -46,7 +46,30 @@ Can the supplied portal-defined PTEN altered/unaltered label be reproduced exact
 - Study ID: `ucec_tcga_pan_can_atlas_2018`
 - Files supplied for this project on July 14, 2026
 
-The raw TCGA-derived data files are not redistributed in this public repository. The source studies are publicly available through cBioPortal: [Uterine Corpus Endometrial Carcinoma, Firehose Legacy](https://www.cbioportal.org/study/summary?id=ucec_tcga) (study ID: `ucec_tcga`) and [Uterine Corpus Endometrial Carcinoma, PanCancer Atlas](https://www.cbioportal.org/study/summary?id=ucec_tcga_pan_can_atlas_2018) (study ID: `ucec_tcga_pan_can_atlas_2018`). To reproduce the analysis, obtain the required files identified in the master notebook, preserve their documented filenames, and place them in a folder named `data_raw/` before running the notebook.
+The raw TCGA-derived data files are not redistributed in this public repository. The source studies are publicly available through cBioPortal: [Uterine Corpus Endometrial Carcinoma, Firehose Legacy](https://www.cbioportal.org/study/summary?id=ucec_tcga) (study ID: `ucec_tcga`) and [Uterine Corpus Endometrial Carcinoma, PanCancer Atlas](https://www.cbioportal.org/study/summary?id=ucec_tcga_pan_can_atlas_2018) (study ID: `ucec_tcga_pan_can_atlas_2018`).
+
+### Required input files
+
+Create `data_raw/` and place the seven files below in it. The S1–S5 filenames
+refer to project-specific supplementary tables, not files distributed under those
+names in a cBioPortal study archive. Use the Firehose Legacy release for S1–S5;
+the PanCancer Atlas release is used only for the documented molecular-subtype
+join.
+
+| Required filename | Study | Source and required columns |
+|---|---|---|
+| `Supplementary_Table_S1_PTEN_altered_unaltered_sample_matrix.tsv` | `ucec_tcga` | Derived from the all-sample PTEN query. One row per sample (549 rows) with `studyID:sampleId`, the downloaded `PTEN` annotation, and binary `Altered` (mutation or GISTIC -2/+2). |
+| `Supplementary_Table_S2_PTEN_discrete_CNA_table.tsv` | `ucec_tcga` | PTEN row from the discrete GISTIC CNA data, transposed to one row per sample. Required columns: `SAMPLE_ID`, `PTEN`. Preserve `NP` where a CNA call is unavailable. |
+| `Supplementary_Table_S3_PTEN_mutation_table.tsv` | `ucec_tcga` | PTEN mutation records from the mutation export. Required columns in the supplied file: `Gene`, `Sample ID`. Retain separate variant records. |
+| `Supplementary_Table_S4_cBioPortal_clinical_survival_table.tsv` | `ucec_tcga` | Patient-level clinical export with one representative tumor sample per patient. Required columns: `patientId`, `sampleId`, `OS_MONTHS`, `OS_STATUS`; retain `AGE`, `CLINICAL_STAGE`, `GRADE`, `HISTOLOGICAL_DIAGNOSIS`, and `RACE` when available. The supplied table has 500 rows. |
+| `Supplementary_Table_S5_cBioPortal_PTEN_survival_summary_table.tsv` | `ucec_tcga` | Survival summary from the same saved all-sample PTEN query. Required columns: `Survival Type`, `Number of Patients`, `# in Altered group`, `# in Unaltered group`, `p-Value`. |
+| `data_clinical_patient.txt` | `ucec_tcga_pan_can_atlas_2018` | Unedited study-archive file. Required fields: `PATIENT_ID`, `SUBTYPE`, `CANCER_TYPE_ACRONYM`, `IN_PANCANPATHWAYS_FREEZE`. Keep the leading cBioPortal metadata lines. |
+| `data_clinical_sample.txt` | `ucec_tcga_pan_can_atlas_2018` | Unedited study-archive file. Required fields: `PATIENT_ID`, `SAMPLE_ID`, `SAMPLE_TYPE`. Keep the leading cBioPortal metadata lines. The supplied selection contains 529 unique primary samples. |
+
+Keep the files tab-delimited and do not allow spreadsheet software to change the
+headers or TCGA identifiers. The notebook validates the expected cohort counts,
+and Phase 4 independently validates all six PTEN reconstruction totals before it
+writes the final outputs.
 
 
 ## Why the subtype analysis uses 507 tumors rather than the 498-patient survival cohort
@@ -124,6 +147,7 @@ Vector PDF versions are saved beside the PNG files.
 
 ## Folder structure
 
+```text
 PTEN-UCEC-survival-analysis/
 ├── README.md
 ├── DATA_DICTIONARY.md
@@ -137,6 +161,7 @@ PTEN-UCEC-survival-analysis/
 ├── data_processed/ # generated analysis datasets
 ├── results/        # generated tabular results
 └── figures/        # generated PNG and PDF figures
+```
 
 ## How to run
 
@@ -170,7 +195,8 @@ PTEN-UCEC-survival-analysis/
    python PTEN_amplification_excluded_sensitivity.py
    ```
 
-10. Review `results/PTEN_status_reconstruction_summary.csv`, `results/PTEN_adjustment_comparison.csv`, `results/final_key_findings.csv`, and the amplification-excluded sensitivity output files.
+10. Review `results/PTEN_status_reconstruction_validation.csv`, `results/PTEN_status_reconstruction_summary.csv`, `results/PTEN_adjustment_comparison.csv`, `results/final_key_findings.csv`, and the amplification-excluded sensitivity output files.
+
 ## Interpretation of findings
 
 > I exactly reconstructed the supplied PTEN label from mutation and high-level copy-number data. My independent survival rerun supported the portal's general unadjusted association but did not reproduce its exact cohort. PTEN alteration frequency differed substantially across molecular subtypes, and the survival association disappeared after adjustment for age, stage, and subtype. Therefore, this dataset does not support PTEN alteration as an independent survival predictor, although PTEN remains biologically important in UCEC.

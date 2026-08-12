@@ -1,9 +1,10 @@
-# Data Dictionary for Main Phase 2 Outputs
+# Data Dictionary
 
 ## Phase 4 raw inputs
 
 `Supplementary_Table_S2_PTEN_discrete_CNA_table.tsv` uses `SAMPLE_ID` for the
-sample identifier and `PTEN` for the discrete CNA value.  The supplied
+sample identifier and `PTEN` for the discrete CNA value. Ten `NP` calls remain
+missing and are not recoded. The supplied
 `Supplementary_Table_S3_PTEN_mutation_table.tsv` uses `Gene` and `Sample ID`.
 The finalization script also accepts the documented cBioPortal alternatives
 `sampleId` or `Tumor_Sample_Barcode` for sample identifiers and `Hugo_Symbol`
@@ -80,6 +81,12 @@ One row per sample in the supplied PTEN matrix. Main fields:
 ## `results/PTEN_status_reconstruction_summary.csv`
 
 Counts for mutations, high-level CNAs, overlap, reconstructed altered samples, portal-labeled altered samples, exact matches, and mismatches.
+
+## `results/PTEN_status_reconstruction_validation.csv`
+
+Expected and observed values for the six reconstruction checks, with a Boolean
+`matches_expected` field. Phase 4 stops before figure generation if any check
+fails.
 
 ## `results/final_key_findings.csv`
 

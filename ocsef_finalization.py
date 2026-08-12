@@ -1,14 +1,16 @@
 """Finalize the OCSEF analysis from saved inputs and Phase 1--3 outputs.
 
-This module deliberately does not fit statistical models.  It reconstructs the
-portal PTEN label, assembles the final findings table, and copies the three
-already-produced plots to their publication filenames.
+This module deliberately does not fit statistical models. It reconstructs the
+portal PTEN label, assembles the final findings table, and renders the three
+final figures from the saved Phase 1–3 datasets and estimates.
 """
 
 from pathlib import Path
-import shutil
 
+import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
+from lifelines import KaplanMeierFitter
 
 
 S1_NAME = "Supplementary_Table_S1_PTEN_altered_unaltered_sample_matrix.tsv"
@@ -17,6 +19,7 @@ S3_NAME = "Supplementary_Table_S3_PTEN_mutation_table.tsv"
 
 FINAL_OUTPUTS = (
     "data_processed/PTEN_status_reconstruction.csv",
+    "results/PTEN_status_reconstruction_validation.csv",
     "results/PTEN_status_reconstruction_summary.csv",
     "results/final_key_findings.csv",
     "figures/final_01_kaplan_meier.png",
@@ -46,7 +49,18 @@ def _sample_ids(frame):
         ("Sample ID", "SAMPLE_ID", "sampleId", "Tumor_Sample_Barcode"),
         "sample identifier column",
     )
-    return frame[name].astype("string").str.strip()
+    return _normalize_sample_ids(frame[name])
+
+
+def _normalize_sample_ids(series):
+    """Remove an optional study prefix and normalize TCGA sample identifiers."""
+    return (
+        series.astype("string")
+        .str.split(":", n=1)
+        .str[-1]
+        .str.strip()
+        .str.upper()
+    )
 
 
 def _read_table(path):
@@ -64,7 +78,7 @@ def reconstruct_pten(s1, s2, s3):
     """Reconstruct mutation-or-high-level-CNA status for every S1 sample."""
     # S1 commonly prefixes the sample with the study ID.
     if "studyID:sampleId" in s1.columns:
-        s1_sample = s1["studyID:sampleId"].astype("string").str.split(":", n=1).str[-1]
+        s1_sample = _normalize_sample_ids(s1["studyID:sampleId"])
     else:
         s1_sample = _sample_ids(s1)
     portal_col = _column(s1, ("Altered", "ALTERED", "PORTAL_ALTERED"), "portal label")
@@ -77,6 +91,8 @@ def reconstruct_pten(s1, s2, s3):
     })
     if cna["SAMPLE_ID"].duplicated().any():
         raise ValueError("Duplicate sample identifiers in the discrete CNA table.")
+    if set(s1_sample.dropna()) != set(cna["SAMPLE_ID"].dropna()):
+        raise ValueError("S1 and S2 do not contain the same sample identifiers.")
 
     gene_col = _column(
         s3, ("Gene", "Hugo_Symbol", "HUGO_SYMBOL", "GENE"), "gene column"
@@ -93,11 +109,13 @@ def reconstruct_pten(s1, s2, s3):
     }).merge(cna, on="SAMPLE_ID", how="left", validate="one_to_one")
     if output["SAMPLE_ID"].duplicated().any():
         raise ValueError("Duplicate sample identifiers in the supplied PTEN matrix.")
-    if output["PTEN_CNA"].isna().any():
-        missing = output.loc[output["PTEN_CNA"].isna(), "SAMPLE_ID"].head().tolist()
-        raise ValueError(f"Missing PTEN CNA values for samples: {missing}")
-
-    output["PTEN_CNA"] = output["PTEN_CNA"].astype(int)
+    # The supplied CNA table contains ten expected NP calls. They remain missing;
+    # only numeric -2 and +2 calls count as high-level alterations.
+    if int(output["PTEN_CNA"].isna().sum()) != 10:
+        raise ValueError(
+            "Expected exactly 10 unavailable (NP) PTEN CNA calls, found "
+            f"{int(output['PTEN_CNA'].isna().sum())}."
+        )
     output["MUTATION_PRESENT"] = output["SAMPLE_ID"].isin(mutation_samples)
     output["HIGH_LEVEL_CNA_PRESENT"] = output["PTEN_CNA"].isin((-2, 2))
     output["RECONSTRUCTED_ALTERED"] = (
@@ -142,10 +160,112 @@ def _validate_reconstruction(summary):
         "reconstructed_altered": 181,
         "exact_matches": 549,
     }
-    failures = {key: (value, int(counts[key])) for key, value in expected.items()
-                if int(counts[key]) != value}
-    if failures:
-        raise ValueError(f"PTEN reconstruction count validation failed: {failures}")
+    validation = pd.DataFrame(
+        [
+            {
+                "check": key,
+                "expected": expected_value,
+                "observed": int(counts[key]),
+                "matches_expected": int(counts[key]) == expected_value,
+            }
+            for key, expected_value in expected.items()
+        ]
+    )
+    return validation
+
+
+def _save_figure(figure, figures_dir, stem):
+    figure.savefig(figures_dir / f"{stem}.png", dpi=300, bbox_inches="tight")
+    figure.savefig(figures_dir / f"{stem}.pdf", bbox_inches="tight")
+    plt.close(figure)
+
+
+def make_final_figures(processed_dir, results_dir, figures_dir):
+    """Render the three final figures from the saved Phase 1–3 artifacts."""
+    survival = pd.read_csv(processed_dir / "survival_analysis_dataset.csv")
+    subtype_stats = pd.read_csv(results_dir / "subtype_statistics.csv")
+    comparison = pd.read_csv(results_dir / "PTEN_adjustment_comparison.csv")
+
+    figure, axis = plt.subplots(figsize=(8, 6))
+    for value, label, color in (
+        (1, "PTEN-altered", "#0072B2"),
+        (0, "PTEN-unaltered", "#D55E00"),
+    ):
+        group = survival.loc[survival["Altered"].eq(value)]
+        KaplanMeierFitter(label=f"{label} (n={len(group)})").fit(
+            group["OS_MONTHS_NUMERIC"], event_observed=group["OS_EVENT"]
+        ).plot_survival_function(
+            ax=axis,
+            ci_show=True,
+            color=color,
+            linewidth=2,
+            show_censors=True,
+        )
+    axis.set(
+        xlabel="Overall survival (months)",
+        ylabel="Estimated survival probability",
+        title="Overall survival by PTEN alteration status",
+    )
+    axis.grid(alpha=0.2)
+    figure.tight_layout()
+    _save_figure(figure, figures_dir, "final_01_kaplan_meier")
+
+    labels = subtype_stats["subtype"]
+    positions = np.arange(len(subtype_stats))
+    percentages = subtype_stats["altered_percent"]
+    lower = percentages - subtype_stats["wilson_ci95_lower_percent"]
+    upper = subtype_stats["wilson_ci95_upper_percent"] - percentages
+    figure, axis = plt.subplots(figsize=(9, 6))
+    bars = axis.bar(
+        positions,
+        percentages,
+        yerr=np.vstack([lower, upper]),
+        capsize=5,
+        color="#56B4E9",
+    )
+    axis.set_xticks(positions, labels, rotation=15, ha="right")
+    axis.set(
+        xlabel="TCGA-UCEC molecular subtype",
+        ylabel="PTEN-altered tumors (%)",
+        title="PTEN alteration frequency by molecular subtype",
+    )
+    axis.grid(axis="y", alpha=0.2)
+    for bar, row in zip(bars, subtype_stats.itertuples()):
+        axis.text(
+            bar.get_x() + bar.get_width() / 2,
+            bar.get_height() + 1,
+            f"{row.altered_n}/{row.total_n}",
+            ha="center",
+            va="bottom",
+            fontsize=9,
+        )
+    figure.tight_layout()
+    _save_figure(figure, figures_dir, "final_02_subtype_frequency")
+
+    positions = np.arange(len(comparison))
+    figure, axis = plt.subplots(figsize=(8, 5))
+    axis.errorbar(
+        comparison["PTEN_HR"],
+        positions,
+        xerr=np.vstack(
+            [
+                comparison["PTEN_HR"] - comparison["CI_95_low"],
+                comparison["CI_95_high"] - comparison["PTEN_HR"],
+            ]
+        ),
+        fmt="o",
+        color="#0072B2",
+        capsize=4,
+    )
+    axis.axvline(1, color="black", linestyle="--", linewidth=1)
+    axis.set_yticks(positions, comparison["model"])
+    axis.set(
+        xlabel="PTEN hazard ratio (95% CI)",
+        title="PTEN association across Cox models",
+    )
+    axis.invert_yaxis()
+    figure.tight_layout()
+    _save_figure(figure, figures_dir, "final_03_adjusted_cox_forest")
 
 
 def build_final_key_findings(results_dir, summary):
@@ -172,7 +292,7 @@ def build_final_key_findings(results_dir, summary):
 
 
 def main(project_root=None):
-    root = Path(project_root or Path.cwd())
+    root = Path(project_root) if project_root else Path(__file__).resolve().parent
     raw, processed, results, figures = (root / name for name in
         ("data_raw", "data_processed", "results", "figures"))
     for directory in (processed, results, figures):
@@ -189,25 +309,23 @@ def main(project_root=None):
 
     reconstruction = reconstruct_pten(*(_read_table(path) for path in paths))
     summary = reconstruction_summary(reconstruction)
+    validation = _validate_reconstruction(summary)
     reconstruction.to_csv(processed / "PTEN_status_reconstruction.csv", index=False)
     summary.to_csv(results / "PTEN_status_reconstruction_summary.csv", index=False)
-    _validate_reconstruction(summary)
+    validation.to_csv(
+        results / "PTEN_status_reconstruction_validation.csv", index=False
+    )
+    if not validation["matches_expected"].all():
+        failures = validation.loc[~validation["matches_expected"]].to_dict("records")
+        raise ValueError(f"PTEN reconstruction count validation failed: {failures}")
     build_final_key_findings(results, summary).to_csv(
         results / "final_key_findings.csv", index=False
     )
+    make_final_figures(processed, results, figures)
 
-    figure_sources = {
-        "final_01_kaplan_meier": "kaplan_meier_PTEN",
-        "final_02_subtype_frequency": "PTEN_alteration_by_molecular_subtype",
-        "final_03_adjusted_cox_forest": "adjusted_cox_forest_plot",
-    }
-    for destination, source in figure_sources.items():
-        for suffix in (".png", ".pdf"):
-            source_path = figures / f"{source}{suffix}"
-            if source_path.exists():
-                shutil.copyfile(source_path, figures / f"{destination}{suffix}")
-
-    print("Phase 4 finalization completed successfully.")
+    matched = int(reconstruction["MATCHES_PORTAL_LABEL"].sum())
+    print(f"Phase 4 PTEN reconstruction: {matched}/{len(reconstruction)} labels matched.")
+    print("Final figures and final_key_findings.csv were written successfully.")
 
 
 if __name__ == "__main__":
