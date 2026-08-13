@@ -1,8 +1,11 @@
 # Validation Report
 
-## Validation date
+## Validation dates
 
-July 15, 2026
+- Clean-run analysis validation: **July 15, 2026**
+- Public repository completion update: **August 13, 2026**
+
+The July date records the two clean runs described below. The August date records the later update that added the complete reproducibility files to the public repository; it is not a second analysis-validation date.
 
 ## Clean-run procedure
 
