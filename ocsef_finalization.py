@@ -64,7 +64,7 @@ def _normalize_sample_ids(series):
 
 
 def _read_table(path):
-    return pd.read_csv(path, sep="\t", comment="#", low_memory=False)
+    return pd.read_csv(path, sep="\t", low_memory=False)
 
 
 def _as_binary(series, name):
