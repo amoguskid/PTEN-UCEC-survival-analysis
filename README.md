@@ -166,7 +166,7 @@ PTEN-UCEC-survival-analysis/
 
 ## How to run
 
-1. Install Python 3.11 or newer.
+1. Install Python 3.11 or newer. The validated manuscript results were generated with Python 3.13.5 and the package versions pinned in `requirements.txt`.
 2. Download or clone this repository and open a terminal in the project folder.
 3. Create a folder named `data_raw/`.
 4. Obtain the public TCGA-derived source files from the cBioPortal studies identified above and place the required files in `data_raw/` using these filenames:
@@ -200,7 +200,7 @@ PTEN-UCEC-survival-analysis/
 
 ## Interpretation of findings
 
-> I exactly reconstructed the supplied PTEN label from mutation and high-level copy-number data. My independent survival rerun supported the portal's general unadjusted association but did not reproduce its exact cohort. PTEN alteration frequency differed substantially across molecular subtypes, and the survival association disappeared after adjustment for age, stage, and subtype. Therefore, this dataset does not support PTEN alteration as an independent survival predictor, although PTEN remains biologically important in UCEC.
+> The supplied PTEN label was exactly reconstructed from mutation and high-level copy-number data. The independent survival rerun supported the portal's general unadjusted association but did not reproduce its exact cohort. PTEN alteration frequency differed substantially across molecular subtypes, and the survival association disappeared after adjustment for age, stage, and subtype. Therefore, this dataset does not support PTEN alteration as an independent survival predictor, although PTEN remains biologically important in UCEC.
 
 ## How to cite
 
