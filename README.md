@@ -150,6 +150,7 @@ Vector PDF versions are saved beside the PNG files.
 ```text
 PTEN-UCEC-survival-analysis/
 ├── README.md
+├── LICENSE
 ├── DATA_DICTIONARY.md
 ├── requirements.txt
 ├── PTEN_UCEC_OCSEF_master_notebook.ipynb
@@ -200,6 +201,22 @@ PTEN-UCEC-survival-analysis/
 ## Interpretation of findings
 
 > I exactly reconstructed the supplied PTEN label from mutation and high-level copy-number data. My independent survival rerun supported the portal's general unadjusted association but did not reproduce its exact cohort. PTEN alteration frequency differed substantially across molecular subtypes, and the survival association disappeared after adjustment for age, stage, and subtype. Therefore, this dataset does not support PTEN alteration as an independent survival predictor, although PTEN remains biologically important in UCEC.
+
+## How to cite
+
+Related publication:
+
+> Liu N. A multi-omics secondary-data analysis of PTEN in uterine corpus
+> endometrial carcinoma (UCEC) using public bioinformatics resources.
+> *National High School Journal of Science*. Published August 2, 2026.
+> https://nhsjs.com/2026/a-multi-omics-secondary-data-analysis-of-pten-in-uterine-corpus-endometrial-carcinoma-ucec-using-public-bioinformatics-resources/
+
+The repository contains a distinct reproducibility and molecular-subtype
+extension. Cite it by its title, author (Nathan Liu), year (2026), and repository
+URL. If the AMIA 2026 High School Scholars abstract is accepted, its citation
+will be added here.
+
+The analysis code is available under the MIT License; see `LICENSE`.
 
 ## Important limitations
 
