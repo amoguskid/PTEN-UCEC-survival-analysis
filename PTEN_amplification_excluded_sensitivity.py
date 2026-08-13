@@ -17,7 +17,7 @@ complete_path = processed_dir / "adjusted_cox_complete_case_dataset.csv"
 for required_path in [reconstruction_path, survival_path, complete_path]:
     if not required_path.exists():
         raise FileNotFoundError(
-            f"Missing {required_path}. Run the master notebook through Phase 3 first."
+            f"Missing {required_path}. Run the master notebook through Phase 4 first."
         )
 
 # Reconstruct the narrower sensitivity definition:
