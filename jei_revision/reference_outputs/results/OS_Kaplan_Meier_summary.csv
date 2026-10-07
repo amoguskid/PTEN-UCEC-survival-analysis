@@ -1,0 +1,7 @@
+cohort,group,patients_n,deaths_n,censored_n,minimum_observed_duration_months,maximum_observed_duration_months,last_observed_death_months,KM_final_survival,KM_minimum_survival_including_initial_1,KM_maximum_survival_including_initial_1,KM_ever_at_or_below_half,KM_median_months,risk_set_at_median_n,deaths_at_median_n,extrapolation_used
+498-patient OS cohort,Overall,498,85,413,0.07,225.33,112.45,0.5169951057309983,0.5169951057309983,1.0,False,,,,False
+498-patient OS cohort,PTEN-altered,146,20,126,0.56,129.7,77.27,0.7979578329836886,0.7979578329836886,1.0,False,,,,False
+498-patient OS cohort,PTEN-unaltered,352,65,287,0.07,225.33,112.45,0.4342178874095542,0.4342178874095542,1.0,True,110.55,10.0,1.0,False
+459 complete cases,Overall,459,77,382,0.07,225.33,110.02,0.5813915389139039,0.5813915389139039,1.0,False,,,,False
+459 complete cases,PTEN-altered,139,19,120,0.56,129.7,77.27,0.7960644367683292,0.7960644367683292,1.0,False,,,,False
+459 complete cases,PTEN-unaltered,320,58,262,0.07,225.33,110.02,0.4915554031364747,0.4915554031364747,1.0,True,110.02,8.0,1.0,False

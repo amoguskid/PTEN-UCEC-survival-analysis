@@ -1,14 +1,19 @@
 # PTEN/UCEC Reproducible Survival Analysis
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/amoguskid/PTEN-UCEC-survival-analysis/blob/main/PTEN_UCEC_OCSEF_master_notebook.ipynb)
+
 ## Purpose
 
-This package contains four linked analyses:
+This package contains four original linked analyses and the integrated JEI manuscript revision:
 
 1. **Phase 1 — Independent survival rerun:** Rebuilds the PTEN altered-versus-unaltered overall-survival analysis from the supplied Firehose Legacy exports.
 2. **Phase 2 — New molecular-subtype analysis:** Tests whether PTEN alteration frequency differs across the four TCGA-UCEC molecular subtypes using supplied PanCancer Atlas clinical files.
 3. **Phase 3 — Adjusted survival analysis:** Fits PTEN-only, age/stage-adjusted, and age/stage/subtype-adjusted Cox models on the same complete-case cohort, with proportional-hazards diagnostics and a stratified sensitivity model.
 4. **Phase 4 — Direct PTEN reconstruction and final figures:** Reconstructs PTEN status from the supplied mutation and discrete CNA tables and creates three final figures.
 
-The package is designed so another person can keep only the raw files and master notebook, run all cells, and recreate the processed datasets, exclusion records, statistics, and figures.
+**JEI revision — notebook sections 20–25:** Adds the reviewer-requested secondary PFS and PFI analyses, the revised manuscript Figure 3, new Figure 4, and Tables 1–3. Overall survival remains the primary endpoint. The notebook contains 54 cells, including 27 code cells, and includes saved figure and table displays.
+
+The repository code and original seven source exports are sufficient to regenerate the processed datasets, exclusion records, statistics, and figures. The setup cell obtains the code in Colab, installs the pinned dependencies, accepts the source-file upload, and downloads the TCGA-CDR workbook described below.
 
 ## Research questions
 
@@ -45,6 +50,16 @@ Can the supplied portal-defined PTEN altered/unaltered label be reproduced exact
 - Study: Uterine Corpus Endometrial Carcinoma (TCGA, PanCancer Atlas)
 - Study ID: `ucec_tcga_pan_can_atlas_2018`
 - Files supplied for this project on July 14, 2026
+
+### TCGA Pan-Cancer Clinical Data Resource (TCGA-CDR)
+
+The JEI revision uses the TCGA-CDR workbook for the secondary progression endpoints. The setup cell automatically downloads `TCGA-CDR-SupplementalTableS1.xlsx` from the official NCI/GDC source linked on the [TCGA Pan-Cancer Clinical Data Resource publication page](https://gdc.cancer.gov/about-data/publications/PanCan-Clinical-2018): [workbook download](https://api.gdc.cancer.gov/data/1b5f413e-a8d1-4d10-92eb-7c4ae739ed81). It saves the workbook under `reference_inputs/` and checks this SHA-256 digest before analysis:
+
+```text
+ea594c0fbb6731477c7ac511fab449ca9c38b0d42d269591ed9f5c4090e75a5a
+```
+
+Source: Liu et al. (2018), DOI [10.1016/j.cell.2018.02.052](https://doi.org/10.1016/j.cell.2018.02.052). The analysis also records input checksums and the actual software versions used in each run.
 
 The raw TCGA-derived data files are not redistributed in this public repository. The source studies are publicly available through cBioPortal: [Uterine Corpus Endometrial Carcinoma, Firehose Legacy](https://www.cbioportal.org/study/summary?id=ucec_tcga) (study ID: `ucec_tcga`) and [Uterine Corpus Endometrial Carcinoma, PanCancer Atlas](https://www.cbioportal.org/study/summary?id=ucec_tcga_pan_can_atlas_2018) (study ID: `ucec_tcga_pan_can_atlas_2018`).
 
@@ -137,7 +152,7 @@ The unadjusted association attenuated after adjustment. A stage- and subtype-str
 - 26 samples had a high-level PTEN CNA (-2 or +2); six also had a mutation.
 - The reconstructed label matched the supplied portal label for 549/549 samples.
 
-The three recommended figures are:
+The three original Phase 4 figures are:
 
 - `figures/final_01_kaplan_meier.png`
 - `figures/final_02_subtype_frequency.png`
@@ -145,31 +160,59 @@ The three recommended figures are:
 
 Vector PDF versions are saved beside the PNG files.
 
+### JEI revision outputs
+
+Sections 20–25 run the revision scripts and display these manuscript outputs:
+
+| Section | Output | Contents |
+|---|---|---|
+| 20 | Revision analyses | OS, PFS, and PFI models, diagnostics, cohort and descriptive audits, and the mutation-or-deletion sensitivity definition. |
+| 21 | `figures/Figure3_Cox_models.png` and `.pdf` | Revised manuscript Figure 3: the complete-case PTEN-only estimate and all six fully adjusted OS coefficients, with numerical HRs, confidence intervals, and p values. |
+| 22 | `figures/Figure4_PFS_PFI_Kaplan_Meier.png` and `.pdf` | PFS and PFI Kaplan–Meier panels with confidence bands, censoring marks, and numbers at risk. |
+| 23 | `tables/Table1.csv`, `.html`; `tables/Table2.csv`, `.html` | PTEN reconstruction and survival-cohort characteristics, including age and observed Kaplan–Meier medians; all six fully adjusted OS coefficients. |
+| 24 | `tables/Table3.csv` and `.html` | PTEN estimates from five models for each secondary progression endpoint. |
+| 25 | `JEI_figures_and_tables.zip` | Downloadable figures, tables, and model/audit results after an output audit. |
+
+The relative figure and table paths above are under `jei_revision_outputs/` after a rerun. Saved manuscript references are under `jei_revision/reference_outputs/{figures,tables,results}`. These references contain figure, table, and result outputs; raw exports and patient-level datasets are not redistributed. Patient-level files generated by a rerun remain in `jei_revision_outputs/data_processed/`.
+
+The original `figures/final_03_adjusted_cox_forest.png` shows only the PTEN estimate across the three primary models. It remains an original Phase 4 output; the revised manuscript Figure 3 is `Figure3_Cox_models.png`.
+
+PFS and PFI use the original 498 eligible patients and the same 459 complete cases. PFS counts death from any cause; PFI censors deaths without tumor. Both endpoints include new primary tumors. The progression analyses are secondary, use nominal p values, and are not independent validation. The complete-case PTEN-only and age/stage progression models violated the proportional-hazards assumption for PTEN, so their HRs are summary estimates.
+
+The JEI analysis script also runs the mutation-or-deletion sensitivity definition. It reclassifies three amplification-only cases as unaltered while retaining those patients. No additional standalone sensitivity-script step is required to produce the JEI outputs. Kaplan–Meier curves and medians use observed follow-up without extrapolation.
+
 ## Folder structure
 
-```text
-PTEN-UCEC-survival-analysis/
-├── README.md
-├── LICENSE
-├── DATA_DICTIONARY.md
-├── requirements.txt
-├── PTEN_UCEC_OCSEF_master_notebook.ipynb
-├── ocsef_finalization.py
-├── PTEN_amplification_excluded_sensitivity.py
-├── VALIDATION_REPORT.md
-├── ANALYSIS_NOTES.md
-├── data_raw/       # user-supplied source tables
-├── data_processed/ # generated analysis datasets
-├── results/        # generated tabular results
-└── figures/        # generated PNG and PDF figures
-```
+| Path | Purpose |
+|---|---|
+| `PTEN_UCEC_OCSEF_master_notebook.ipynb` | Original Phases 1–4 plus JEI sections 20–25; setup and saved displays. |
+| `ocsef_finalization.py` | Original Phase 4 reconstruction and figures. |
+| `PTEN_amplification_excluded_sensitivity.py` | Standalone script from the original workflow. |
+| `jei_revision/` | Integrated revision analysis, figure and table export scripts. |
+| `jei_revision/requirements.txt` | Pinned dependency closure used for the complete notebook, including all original phases. |
+| `jei_revision/reference_outputs/{figures,tables,results}` | Saved manuscript reference outputs without raw or patient-level datasets. |
+| `data_raw/` | Original seven source exports supplied by the person running the notebook. |
+| `reference_inputs/` | TCGA-CDR workbook downloaded and verified by setup. |
+| `data_processed/`, `results/`, `figures/` | Locally generated original-phase outputs. |
+| `jei_revision_outputs/` | Locally generated JEI revision outputs, including patient-level `data_processed/`. |
+| `VALIDATION_REPORT.md`, `ANALYSIS_NOTES.md`, `DATA_DICTIONARY.md` | Execution evidence, analysis details, and input definitions. |
+| `README.md`, `LICENSE`, `requirements.txt` | Project documentation, MIT license, and original-phase dependency list. |
 
 ## How to run
 
-1. Install Python 3.11 or newer. The validated manuscript results were generated with Python 3.13.5 and the package versions pinned in `requirements.txt`.
+### Google Colab
+
+1. Use the **Open in Colab** badge above to open the GitHub master notebook. The saved outputs can be viewed before rerunning it.
+2. Start a fresh session and run the section 0 setup cell. It clones the repository when needed and installs `jei_revision/requirements.txt` for all phases. If Colab requests a restart after installation, restart the session and run all cells again.
+3. Upload the original seven source exports together, or upload a ZIP containing them, when the setup cell prompts. The TCGA-CDR workbook is downloaded automatically and checked against its recorded checksum.
+4. Select **Runtime → Run all**. Run all 27 code cells in order, including the original analyses and JEI sections 20–25. Section 25 audits the revision outputs and downloads `JEI_figures_and_tables.zip`.
+
+### Local Python
+
+1. Use Python 3.12 for the complete notebook and the dependencies in `jei_revision/requirements.txt`. The original Phase 1–4 execution used Python 3.13.5; see `VALIDATION_REPORT.md` for recorded execution and environment details.
 2. Download or clone this repository and open a terminal in the project folder.
 3. Create a folder named `data_raw/`.
-4. Obtain the public TCGA-derived source files from the cBioPortal studies identified above and place the required files in `data_raw/` using these filenames:
+4. Place the original source exports described above in `data_raw/` using these filenames:
 
    - `Supplementary_Table_S1_PTEN_altered_unaltered_sample_matrix.tsv`
    - `Supplementary_Table_S2_PTEN_discrete_CNA_table.tsv`
@@ -182,21 +225,13 @@ PTEN-UCEC-survival-analysis/
 5. Install the required packages:
 
    ```bash
-   pip install -r requirements.txt
+   python -m pip install -r jei_revision/requirements.txt
    ```
 
 6. Open `PTEN_UCEC_OCSEF_master_notebook.ipynb`.
-7. Select **Restart Kernel and Run All Cells**. The notebook runs Phases 1–3 in
-   order and then invokes `ocsef_finalization.py` for Phase 4; do not run the
-   finalization script before the earlier phases have written their result tables.
-8. Confirm that all 20 code cells finish without errors and that the `data_processed/`, `results/`, and `figures/` folders are created.
-9. After the notebook finishes, run the amplification-excluded sensitivity analysis:
-
-   ```bash
-   python PTEN_amplification_excluded_sensitivity.py
-   ```
-
-10. Review `results/PTEN_status_reconstruction_validation.csv`, `results/PTEN_status_reconstruction_summary.csv`, `results/PTEN_adjustment_comparison.csv`, `results/final_key_findings.csv`, and the amplification-excluded sensitivity output files.
+7. Select **Restart Kernel and Run All Cells**. Setup downloads and verifies the TCGA-CDR workbook. The notebook runs Phases 1–3 in order, invokes `ocsef_finalization.py` for Phase 4, and then runs the JEI revision scripts and displays in sections 20–25. Later steps depend on the earlier result files.
+8. Confirm that all 27 code cells finish without errors and review the section 25 output audit. The complete notebook contains 54 cells in total.
+9. Review the original reconstruction and adjustment results in `results/`, and Figures 3–4, Tables 1–3, model diagnostics, checksums, and software versions in `jei_revision_outputs/`. Section 25 creates `JEI_figures_and_tables.zip`; patient-level datasets remain outside this archive.
 
 ## Interpretation of findings
 

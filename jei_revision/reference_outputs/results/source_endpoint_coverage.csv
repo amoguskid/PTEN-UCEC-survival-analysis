@@ -1,0 +1,3 @@
+source_sheet,endpoint,source_UCEC_n,source_usable_endpoint_n,source_usable_events_n,source_zero_time_n,matched_original_OS_cohort_n,eligible_primary_endpoint_cohort_n
+TCGA-CDR,PFI,548,547,124,1,498,498
+ExtraEndpoints,PFS,548,547,150,1,498,498

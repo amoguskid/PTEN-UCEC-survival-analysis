@@ -1,0 +1,79 @@
+variable,test_statistic,p,-log2(p),endpoint,definition,model
+Altered,0.6800530689025935,0.4095684506367099,1.287823507144632,OS,Primary portal definition,Unadjusted: all eligible
+Altered,1.2675170110385232,0.26023300424148044,1.9421241503720947,OS,Primary portal definition,PTEN only: fixed complete cases
+ADVANCED_STAGE,10.086866710378365,0.001493298077355311,9.387282113965373,OS,Primary portal definition,Age and stage: fixed complete cases
+AGE_10Y,0.04204735254242024,0.8375295360336635,0.2557880259365465,OS,Primary portal definition,Age and stage: fixed complete cases
+Altered,2.3506299900401504,0.1252323880656668,2.9973203692065957,OS,Primary portal definition,Age and stage: fixed complete cases
+ADVANCED_STAGE,9.283035588466564,0.0023128582125942934,8.756107458920146,OS,Primary portal definition,"Age, stage and subtype: fixed complete cases"
+AGE_10Y,0.06844376524766062,0.7936162786410981,0.33348647632749373,OS,Primary portal definition,"Age, stage and subtype: fixed complete cases"
+Altered,0.22997540497608188,0.631542065927966,0.6630492622451596,OS,Primary portal definition,"Age, stage and subtype: fixed complete cases"
+SUBTYPE_UCEC_CN_LOW,0.3857581566536409,0.5345375650251636,0.9036367569113305,OS,Primary portal definition,"Age, stage and subtype: fixed complete cases"
+SUBTYPE_UCEC_MSI,5.80714723099897,0.01596116599955705,5.969290142203593,OS,Primary portal definition,"Age, stage and subtype: fixed complete cases"
+SUBTYPE_UCEC_POLE,0.011212271654611602,0.9156712034971941,0.12709844224038105,OS,Primary portal definition,"Age, stage and subtype: fixed complete cases"
+AGE_10Y,3.546943320898879,0.05965524919211046,4.06720710046721,OS,Primary portal definition,Stage/subtype stratified: fixed complete cases
+Altered,0.020237642572363965,0.8868753762383175,0.17319670368086573,OS,Primary portal definition,Stage/subtype stratified: fixed complete cases
+PTEN_NO_AMP,0.7551707591946237,0.38484405948064915,1.37765411710097,OS,Amplification excluded,Unadjusted: all eligible
+PTEN_NO_AMP,1.3755238701181027,0.24086506898177995,2.053702910363657,OS,Amplification excluded,PTEN only: fixed complete cases
+ADVANCED_STAGE,10.066114877211872,0.0015102115231116619,9.371033654335342,OS,Amplification excluded,Age and stage: fixed complete cases
+AGE_10Y,0.042432519427613946,0.8367975104542825,0.2570495354399404,OS,Amplification excluded,Age and stage: fixed complete cases
+PTEN_NO_AMP,2.372078917330534,0.12352245775430462,3.0171547312533242,OS,Amplification excluded,Age and stage: fixed complete cases
+ADVANCED_STAGE,9.204207150325502,0.002414595514735365,8.694002750988114,OS,Amplification excluded,"Age, stage and subtype: fixed complete cases"
+AGE_10Y,0.06459128007548942,0.7993811090689893,0.32304461541711255,OS,Amplification excluded,"Age, stage and subtype: fixed complete cases"
+PTEN_NO_AMP,0.19941622572547676,0.6551924649521768,0.6100093295425021,OS,Amplification excluded,"Age, stage and subtype: fixed complete cases"
+SUBTYPE_UCEC_CN_LOW,0.38229318504342,0.5363785105832537,0.898676656481678,OS,Amplification excluded,"Age, stage and subtype: fixed complete cases"
+SUBTYPE_UCEC_MSI,5.748443046978901,0.016503276933177907,5.921103671615737,OS,Amplification excluded,"Age, stage and subtype: fixed complete cases"
+SUBTYPE_UCEC_POLE,0.011666457755624185,0.9139866667564936,0.12975497549525467,OS,Amplification excluded,"Age, stage and subtype: fixed complete cases"
+AGE_10Y,3.5587704269903617,0.05923159864274015,4.077489165218224,OS,Amplification excluded,Stage/subtype stratified: fixed complete cases
+PTEN_NO_AMP,0.0024039266159420767,0.9608955042260918,0.0575485460233208,OS,Amplification excluded,Stage/subtype stratified: fixed complete cases
+Altered,3.430197578568037,0.06401444249416029,3.965458757098391,PFS,Primary portal definition,Unadjusted: all eligible
+Altered,6.17401002687891,0.012964043065186148,6.269340471517341,PFS,Primary portal definition,PTEN only: fixed complete cases
+ADVANCED_STAGE,2.2698876015240232,0.13190946874616308,2.9223799668192796,PFS,Primary portal definition,Age and stage: fixed complete cases
+AGE_10Y,0.8988971595203642,0.3430775954024038,1.5433931807587578,PFS,Primary portal definition,Age and stage: fixed complete cases
+Altered,6.70946893036885,0.00959022814799104,6.704219147827432,PFS,Primary portal definition,Age and stage: fixed complete cases
+ADVANCED_STAGE,2.0876729319567384,0.14849210851245762,2.7515418326321,PFS,Primary portal definition,"Age, stage and subtype: fixed complete cases"
+AGE_10Y,0.28124407034349896,0.5958869660282898,0.7468894034888431,PFS,Primary portal definition,"Age, stage and subtype: fixed complete cases"
+Altered,3.0278271470750755,0.0818475575471553,3.610916824598602,PFS,Primary portal definition,"Age, stage and subtype: fixed complete cases"
+SUBTYPE_UCEC_CN_LOW,0.7308316030568517,0.39261376632977285,1.348817335563917,PFS,Primary portal definition,"Age, stage and subtype: fixed complete cases"
+SUBTYPE_UCEC_MSI,1.6070732373873988,0.20490370318246998,2.2869820367719407,PFS,Primary portal definition,"Age, stage and subtype: fixed complete cases"
+SUBTYPE_UCEC_POLE,0.36855312629113135,0.5437939964373648,0.8788678709940757,PFS,Primary portal definition,"Age, stage and subtype: fixed complete cases"
+AGE_10Y,1.499983544249089,0.2206738939230858,2.1800121283211107,PFS,Primary portal definition,Stage/subtype stratified: fixed complete cases
+Altered,0.5221158819422094,0.46994049997536513,1.0894499887874032,PFS,Primary portal definition,Stage/subtype stratified: fixed complete cases
+PTEN_NO_AMP,3.816043886262102,0.05076396371424298,4.300051468751244,PFS,Amplification excluded,Unadjusted: all eligible
+PTEN_NO_AMP,6.754125592259887,0.009353117037122468,6.740337044304881,PFS,Amplification excluded,PTEN only: fixed complete cases
+ADVANCED_STAGE,2.254995159706629,0.13318387203863563,2.908508705711155,PFS,Amplification excluded,Age and stage: fixed complete cases
+AGE_10Y,0.8807081875415895,0.3480077859320465,1.5228085112274474,PFS,Amplification excluded,Age and stage: fixed complete cases
+PTEN_NO_AMP,7.186556573941529,0.0073451803794884665,7.0889863644185676,PFS,Amplification excluded,Age and stage: fixed complete cases
+ADVANCED_STAGE,1.9613422940468035,0.1613698352708683,2.631557172853538,PFS,Amplification excluded,"Age, stage and subtype: fixed complete cases"
+AGE_10Y,0.30708991594650603,0.579471443491774,0.7871905283025842,PFS,Amplification excluded,"Age, stage and subtype: fixed complete cases"
+PTEN_NO_AMP,3.3135120374650606,0.06871249745532754,3.8632836689399057,PFS,Amplification excluded,"Age, stage and subtype: fixed complete cases"
+SUBTYPE_UCEC_CN_LOW,0.5768324297968661,0.44755659259135494,1.159857975217266,PFS,Amplification excluded,"Age, stage and subtype: fixed complete cases"
+SUBTYPE_UCEC_MSI,1.3708913113046104,0.241658803126596,2.048956544790625,PFS,Amplification excluded,"Age, stage and subtype: fixed complete cases"
+SUBTYPE_UCEC_POLE,0.4069238443923635,0.5235349842635201,0.9336421490643918,PFS,Amplification excluded,"Age, stage and subtype: fixed complete cases"
+AGE_10Y,1.4556650100240776,0.2276211244362466,2.1352936413500783,PFS,Amplification excluded,Stage/subtype stratified: fixed complete cases
+PTEN_NO_AMP,0.4680647157443776,0.4938788395911704,1.0177709376123172,PFS,Amplification excluded,Stage/subtype stratified: fixed complete cases
+Altered,2.4935087646938885,0.11431661061050898,3.128893047377906,PFI,Primary portal definition,Unadjusted: all eligible
+Altered,4.488623938254905,0.034121132335465765,4.873190665402976,PFI,Primary portal definition,PTEN only: fixed complete cases
+ADVANCED_STAGE,0.4544793026641763,0.5002154447672659,0.9993784916964579,PFI,Primary portal definition,Age and stage: fixed complete cases
+AGE_10Y,1.3927458671758661,0.23794193524221502,2.0713185379860874,PFI,Primary portal definition,Age and stage: fixed complete cases
+Altered,4.664880973642599,0.030785557218710475,5.021602508199311,PFI,Primary portal definition,Age and stage: fixed complete cases
+ADVANCED_STAGE,0.5683850936695967,0.4509013516459588,1.1491162602057874,PFI,Primary portal definition,"Age, stage and subtype: fixed complete cases"
+AGE_10Y,0.2721526132590526,0.6018914228910713,0.7324248367802584,PFI,Primary portal definition,"Age, stage and subtype: fixed complete cases"
+Altered,1.6402567887227144,0.20029023934023904,2.319835978272663,PFI,Primary portal definition,"Age, stage and subtype: fixed complete cases"
+SUBTYPE_UCEC_CN_LOW,0.5379598404928811,0.4632794666466511,1.1100453538576829,PFI,Primary portal definition,"Age, stage and subtype: fixed complete cases"
+SUBTYPE_UCEC_MSI,2.8793256446138527,0.08972358969847549,3.478368848256147,PFI,Primary portal definition,"Age, stage and subtype: fixed complete cases"
+SUBTYPE_UCEC_POLE,0.002379173861365454,0.9610971903339827,0.05724576490499305,PFI,Primary portal definition,"Age, stage and subtype: fixed complete cases"
+AGE_10Y,0.48433717126582615,0.4864642965483721,1.0395941708322336,PFI,Primary portal definition,Stage/subtype stratified: fixed complete cases
+Altered,0.11201942446012202,0.737856659630571,0.4385875177962431,PFI,Primary portal definition,Stage/subtype stratified: fixed complete cases
+PTEN_NO_AMP,2.920152380888152,0.08747960247872219,3.5149095252103826,PFI,Amplification excluded,Unadjusted: all eligible
+PTEN_NO_AMP,5.129915104734193,0.02351687790592899,5.410159648674016,PFI,Amplification excluded,PTEN only: fixed complete cases
+ADVANCED_STAGE,0.4560493132067019,0.49947614313359534,1.0015123237862078,PFI,Amplification excluded,Age and stage: fixed complete cases
+AGE_10Y,1.3502985374874545,0.24522593286756736,2.027816541465827,PFI,Amplification excluded,Age and stage: fixed complete cases
+PTEN_NO_AMP,5.242811112811182,0.022037636428119643,5.503886688927514,PFI,Amplification excluded,Age and stage: fixed complete cases
+ADVANCED_STAGE,0.5168520530937647,0.47218760433585816,1.0825679258280376,PFI,Amplification excluded,"Age, stage and subtype: fixed complete cases"
+AGE_10Y,0.2902711215114568,0.5900468416244664,0.7610986056724365,PFI,Amplification excluded,"Age, stage and subtype: fixed complete cases"
+PTEN_NO_AMP,1.9630110066422481,0.16119166249445732,2.6331509713004895,PFI,Amplification excluded,"Age, stage and subtype: fixed complete cases"
+SUBTYPE_UCEC_CN_LOW,0.4043503888651628,0.5248510440923908,0.9300200596152778,PFI,Amplification excluded,"Age, stage and subtype: fixed complete cases"
+SUBTYPE_UCEC_MSI,2.5459729374614404,0.11057577690439468,3.1768927162530574,PFI,Amplification excluded,"Age, stage and subtype: fixed complete cases"
+SUBTYPE_UCEC_POLE,0.006043785504544859,0.9380334531532132,0.09228872029422168,PFI,Amplification excluded,"Age, stage and subtype: fixed complete cases"
+AGE_10Y,0.47271211486169795,0.49174210776073035,1.0240261968031321,PFI,Amplification excluded,Stage/subtype stratified: fixed complete cases
+PTEN_NO_AMP,0.07634379283001208,0.7823147334279138,0.3541789592141028,PFI,Amplification excluded,Stage/subtype stratified: fixed complete cases

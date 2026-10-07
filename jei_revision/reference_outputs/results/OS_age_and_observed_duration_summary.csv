@@ -1,0 +1,7 @@
+cohort,group,patients_n,deaths_n,censored_n,age_years_available_n,age_years_missing_or_nonnumeric_n,age_years_minimum,age_years_q1,age_years_median,age_years_q3,age_years_iqr_width,age_years_maximum,observed_duration_months_available_n,observed_duration_months_missing_or_nonnumeric_n,observed_duration_months_minimum,observed_duration_months_q1,observed_duration_months_median,observed_duration_months_q3,observed_duration_months_iqr_width,observed_duration_months_maximum
+498-patient OS cohort,Overall,498,85,413,496,2,31.0,57.0,64.0,71.0,14.0,90.0,498,0,0.07,17.924999999999997,31.189999999999998,57.525000000000006,39.60000000000001,225.33
+498-patient OS cohort,PTEN-altered,146,20,126,146,0,34.0,57.0,63.0,69.0,12.0,89.0,146,0,0.56,22.2725,40.785,69.0625,46.79,129.7
+498-patient OS cohort,PTEN-unaltered,352,65,287,350,2,31.0,57.0,64.5,72.0,15.0,90.0,352,0,0.07,16.3525,28.990000000000002,48.599999999999994,32.247499999999995,225.33
+459 complete cases,Overall,459,77,382,459,0,31.0,57.0,64.0,71.0,14.0,90.0,459,0,0.07,18.15,31.73,57.49,39.34,225.33
+459 complete cases,PTEN-altered,139,19,120,139,0,34.0,57.0,63.0,69.5,12.5,89.0,139,0,0.56,22.11,40.08,68.905,46.795,129.7
+459 complete cases,PTEN-unaltered,320,58,262,320,0,31.0,57.0,64.5,72.0,15.0,90.0,320,0,0.07,16.7725,29.744999999999997,48.75,31.9775,225.33

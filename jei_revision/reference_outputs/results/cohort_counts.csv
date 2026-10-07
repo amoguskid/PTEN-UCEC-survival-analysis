@@ -1,0 +1,7 @@
+endpoint,cohort,patients_n,events_n,altered_n,unaltered_n,altered_events_n,unaltered_events_n,zero_times_n
+OS,Endpoint-eligible,498,85,146,352,20,65,0
+OS,Fixed complete case,459,77,139,320,19,58,0
+PFS,Endpoint-eligible,498,140,146,352,38,102,0
+PFS,Fixed complete case,459,125,139,320,34,91,0
+PFI,Endpoint-eligible,498,117,146,352,30,87,0
+PFI,Fixed complete case,459,107,139,320,27,80,0

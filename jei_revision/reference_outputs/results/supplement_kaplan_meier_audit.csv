@@ -1,0 +1,3 @@
+group,patients_n,deaths_n,censored_n,crude_death_fraction,maximum_observed_followup_months,last_observed_death_months,KM_final_survival,median_reached,KM_median_months,risk_set_at_median_n,deaths_at_median_n,KM_survival_before_median,KM_survival_at_median,median_is_observed_death_time,extrapolation_used,deaths_before_median_n,censors_before_median_n
+PTEN-unaltered,352,65,287,0.1846590909090909,225.33,112.45,0.4342178874095542,True,110.55,10.0,1.0,0.5427723592619428,0.4884951233357485,True,False,63.0,279.0
+PTEN-altered,146,20,126,0.136986301369863,129.7,77.27,0.7979578329836886,False,,,,,,,False,,

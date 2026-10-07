@@ -1,0 +1,10 @@
+software,version
+Python,3.12.14
+pandas,2.2.3
+numpy,2.3.5
+scipy,1.17.0
+matplotlib,3.10.8
+lifelines,0.30.0
+autograd,1.9.1
+formulaic,1.2.2
+openpyxl,3.1.5

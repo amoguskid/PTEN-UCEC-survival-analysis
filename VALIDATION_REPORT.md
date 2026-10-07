@@ -2,10 +2,56 @@
 
 ## Validation dates
 
+- JEI revision notebook validation: **October 7, 2026**
 - Clean-run analysis validation: **July 15, 2026**
 - Public repository completion update: **August 13, 2026**
 
 The July date records the two clean runs described below. The August date records the later update that added the complete reproducibility files to the public repository; it is not a second analysis-validation date.
+
+## JEI revision validation — October 7, 2026
+
+The revised master notebook contains 54 cells, including 27 code cells. All 27
+code cells were executed from top to bottom in one fresh IPython session with
+Python 3.12.14 and the analysis versions pinned in
+`jei_revision/requirements.txt`. Execution and display capture used IPython
+directly because the validation workspace did not permit Jupyter kernel
+sockets. No code cells failed. This was a local validation; the Colab setup and
+upload/download paths are provided for the same notebook.
+
+The run recreated the original four phases and the JEI revision outputs in
+sections 20–25. It saved the actual execution outputs in the notebook, including
+the revised Figure 3, the PFS/PFI Kaplan–Meier Figure 4, and Tables 1–3. The two
+figures were visually checked, including the separation between the Figure 3
+axis label and footnote. All 15 required revision output files were present.
+
+The executed outputs were compared with the revised manuscript and the
+validated revision analysis package:
+
+- All 165 formatted cells in Table 1A, Table 1B, Table 2, and Table 3 matched the manuscript exactly, including headers.
+- All 30 model rows, 78 coefficient rows, and 78 proportional-hazards diagnostic rows matched the reference CSV values exactly.
+- All cohort counts, six age summaries, six Kaplan–Meier summaries, six log-rank tests, and 24 Figure 4 risk counts matched exactly.
+- The seven endpoint/cohort and PTEN reconstruction datasets matched the reference CSV rows exactly.
+
+The primary cohorts remained 498 endpoint-eligible patients and 459 complete
+cases. The new endpoints contained 140 PFS events and 117 PFI events in the
+498-patient cohort, and 125 PFS events and 107 PFI events among complete cases.
+The fully adjusted PTEN estimates were HR 1.18 (95% CI 0.76–1.84; p=0.469) for
+PFS and HR 1.14 (95% CI 0.69–1.86; p=0.610) for PFI. PFS includes deaths from
+any cause; PFI censors deaths without tumor.
+
+The OS median audit confirmed an observed Kaplan–Meier crossing at 110.55
+months in the PTEN-unaltered group, reported as 110.6 months. Ten patients
+remained at risk immediately before that time. The PTEN-altered curve did not
+reach 0.5. Neither the curves nor medians were extrapolated.
+
+Aggregate reference outputs are stored in `jei_revision/reference_outputs/`.
+Raw exports and patient-level processed datasets are not redistributed. The
+notebook can be opened in Colab from GitHub to view its saved outputs; a fresh
+rerun requires the original seven source exports, while the TCGA-CDR workbook
+is downloaded from the official NCI endpoint and checked against its SHA-256.
+No new subtype-specific survival or null-only mutation analyses were added.
+
+## Original validation record
 
 ## Clean-run procedure
 

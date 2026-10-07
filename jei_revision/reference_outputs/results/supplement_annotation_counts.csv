@@ -1,0 +1,40 @@
+cohort,annotation_source,category,mutation_records_n
+All 549 source tumors,Archived OncoKB,Likely Oncogenic,159
+All 549 source tumors,Archived OncoKB,Oncogenic,71
+All 549 source tumors,Archived OncoKB,Unknown,25
+All 549 source tumors,Archived functional predictions,Prediction values unavailable,151
+All 549 source tumors,Archived functional predictions,Prediction values present,104
+All 549 source tumors,Archived ClinVar,Pathogenic,127
+All 549 source tumors,Archived ClinVar,No annotation,61
+All 549 source tumors,Archived ClinVar,Pathogenic/Likely_pathogenic,35
+All 549 source tumors,Archived ClinVar,Uncertain_significance,15
+All 549 source tumors,Archived ClinVar,Likely_pathogenic,13
+All 549 source tumors,Archived ClinVar,Conflicting_classifications_of_pathogenicity(Likely_pathogenic(1)|Uncertain_significance(1)),2
+All 549 source tumors,Archived ClinVar,Conflicting_classifications_of_pathogenicity(Pathogenic(1)|Uncertain_significance(1)),1
+All 549 source tumors,Archived ClinVar,Conflicting_classifications_of_pathogenicity(Pathogenic(1)|Likely_pathogenic(1)|Uncertain_significance(1)),1
+498-patient OS cohort,Archived OncoKB,Likely Oncogenic,121
+498-patient OS cohort,Archived OncoKB,Oncogenic,59
+498-patient OS cohort,Archived OncoKB,Unknown,21
+498-patient OS cohort,Archived functional predictions,Prediction values unavailable,116
+498-patient OS cohort,Archived functional predictions,Prediction values present,85
+498-patient OS cohort,Archived ClinVar,Pathogenic,101
+498-patient OS cohort,Archived ClinVar,No annotation,45
+498-patient OS cohort,Archived ClinVar,Pathogenic/Likely_pathogenic,27
+498-patient OS cohort,Archived ClinVar,Uncertain_significance,13
+498-patient OS cohort,Archived ClinVar,Likely_pathogenic,11
+498-patient OS cohort,Archived ClinVar,Conflicting_classifications_of_pathogenicity(Likely_pathogenic(1)|Uncertain_significance(1)),2
+498-patient OS cohort,Archived ClinVar,Conflicting_classifications_of_pathogenicity(Pathogenic(1)|Uncertain_significance(1)),1
+498-patient OS cohort,Archived ClinVar,Conflicting_classifications_of_pathogenicity(Pathogenic(1)|Likely_pathogenic(1)|Uncertain_significance(1)),1
+459 complete cases,Archived OncoKB,Likely Oncogenic,111
+459 complete cases,Archived OncoKB,Oncogenic,59
+459 complete cases,Archived OncoKB,Unknown,20
+459 complete cases,Archived functional predictions,Prediction values unavailable,108
+459 complete cases,Archived functional predictions,Prediction values present,82
+459 complete cases,Archived ClinVar,Pathogenic,97
+459 complete cases,Archived ClinVar,No annotation,39
+459 complete cases,Archived ClinVar,Pathogenic/Likely_pathogenic,26
+459 complete cases,Archived ClinVar,Uncertain_significance,13
+459 complete cases,Archived ClinVar,Likely_pathogenic,11
+459 complete cases,Archived ClinVar,Conflicting_classifications_of_pathogenicity(Likely_pathogenic(1)|Uncertain_significance(1)),2
+459 complete cases,Archived ClinVar,Conflicting_classifications_of_pathogenicity(Pathogenic(1)|Uncertain_significance(1)),1
+459 complete cases,Archived ClinVar,Conflicting_classifications_of_pathogenicity(Pathogenic(1)|Likely_pathogenic(1)|Uncertain_significance(1)),1

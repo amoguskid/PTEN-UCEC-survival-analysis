@@ -1,0 +1,7 @@
+Measure,Overall,PTEN-altered,PTEN-unaltered
+Analyzable patients,498,146,352
+"Age, median (IQR), years",64 (57–71),63 (57–69),64.5 (57–72)
+Age available / missing,496 / 2,146 / 0,350 / 2
+Deaths,85,20,65
+Censored,413,126,287
+Median overall survival (months),,Not reached,110.6

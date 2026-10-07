@@ -1,0 +1,22 @@
+cohort,cohort_tumors_n,mutation_type,mutation_records_n,distinct_tumors_n
+All 549 source tumors,549,Missense_Mutation,104,84
+All 549 source tumors,549,Frame_Shift_Del,54,49
+All 549 source tumors,549,Nonsense_Mutation,53,49
+All 549 source tumors,549,Frame_Shift_Ins,19,18
+All 549 source tumors,549,Splice_Site,16,16
+All 549 source tumors,549,In_Frame_Del,8,8
+All 549 source tumors,549,In_Frame_Ins,1,1
+498-patient OS cohort,498,Missense_Mutation,85,68
+498-patient OS cohort,498,Frame_Shift_Del,38,35
+498-patient OS cohort,498,Nonsense_Mutation,41,37
+498-patient OS cohort,498,Frame_Shift_Ins,16,15
+498-patient OS cohort,498,Splice_Site,13,13
+498-patient OS cohort,498,In_Frame_Del,7,7
+498-patient OS cohort,498,In_Frame_Ins,1,1
+459 complete cases,459,Missense_Mutation,82,65
+459 complete cases,459,Frame_Shift_Del,33,31
+459 complete cases,459,Nonsense_Mutation,41,37
+459 complete cases,459,Frame_Shift_Ins,13,12
+459 complete cases,459,Splice_Site,13,13
+459 complete cases,459,In_Frame_Del,7,7
+459 complete cases,459,In_Frame_Ins,1,1

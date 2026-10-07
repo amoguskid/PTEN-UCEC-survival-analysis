@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-07",
+  "python": "3.12.14",
+  "execution_method": "Sequential IPython cell execution with captured real outputs",
+  "total_cells": 54,
+  "executed_code_cells": 27,
+  "errors": 0,
+  "elapsed_seconds": 19.21,
+  "required_revision_outputs": 15,
+  "required_revision_outputs_missing": 0,
+  "formatted_manuscript_cells_matched": 165,
+  "model_rows_matched": 30,
+  "coefficient_rows_matched": 78,
+  "PH_diagnostic_rows_matched": 78,
+  "reference_values_differing": 0
+}

@@ -1,0 +1,25 @@
+endpoint,group,time_months,at_risk_at_start_of_time
+PFS,PTEN-altered (n=146),0.0,146
+PFS,PTEN-altered (n=146),24.0,89
+PFS,PTEN-altered (n=146),48.0,58
+PFS,PTEN-altered (n=146),72.0,26
+PFS,PTEN-altered (n=146),96.0,5
+PFS,PTEN-altered (n=146),120.0,1
+PFS,PTEN-unaltered (n=352),0.0,352
+PFS,PTEN-unaltered (n=352),24.0,178
+PFS,PTEN-unaltered (n=352),48.0,79
+PFS,PTEN-unaltered (n=352),72.0,37
+PFS,PTEN-unaltered (n=352),96.0,16
+PFS,PTEN-unaltered (n=352),120.0,5
+PFI,PTEN-altered (n=146),0.0,146
+PFI,PTEN-altered (n=146),24.0,89
+PFI,PTEN-altered (n=146),48.0,58
+PFI,PTEN-altered (n=146),72.0,26
+PFI,PTEN-altered (n=146),96.0,5
+PFI,PTEN-altered (n=146),120.0,1
+PFI,PTEN-unaltered (n=352),0.0,352
+PFI,PTEN-unaltered (n=352),24.0,178
+PFI,PTEN-unaltered (n=352),48.0,79
+PFI,PTEN-unaltered (n=352),72.0,37
+PFI,PTEN-unaltered (n=352),96.0,16
+PFI,PTEN-unaltered (n=352),120.0,5

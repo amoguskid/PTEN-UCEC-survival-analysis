@@ -1,0 +1,9 @@
+Measure,Count
+Samples in PTEN matrix,549
+Reconstructed PTEN-altered samples,181
+Reconstructed PTEN-unaltered samples,368
+Mutation only,155
+High-level copy-number alteration only,20
+Mutation and high-level copy-number alteration,6
+Exact matches to supplied portal labels,549
+Label mismatches,0

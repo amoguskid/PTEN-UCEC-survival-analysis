@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.analysis_dependencies/
+/data_raw/
+/data_processed/
+/results/
+/figures/
+/reference_inputs/
+/jei_revision_outputs/
+/JEI_figures_and_tables.zip

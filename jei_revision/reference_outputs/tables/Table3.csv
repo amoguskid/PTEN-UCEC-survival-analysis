@@ -1,0 +1,11 @@
+Endpoint,Model,Patients,Events,HR,95% CI,p value
+PFS,Unadjusted all eligible,498,140,0.77,0.53–1.11,0.162
+PFS,PTEN only complete cases,459,125,0.73,0.49–1.09,0.125
+PFS,PTEN plus age and stage,459,125,0.89,0.59–1.33,0.553
+PFS,PTEN plus age stage and subtype,459,125,1.18,0.76–1.84,0.469
+PFS,Stage and subtype stratified,459,125,1.26,0.80–2.00,0.313
+PFI,Unadjusted all eligible,498,117,0.70,0.46–1.06,0.093
+PFI,PTEN only complete cases,459,107,0.66,0.43–1.03,0.066
+PFI,PTEN plus age and stage,459,107,0.80,0.51–1.25,0.323
+PFI,PTEN plus age stage and subtype,459,107,1.14,0.69–1.86,0.610
+PFI,Stage and subtype stratified,459,107,1.20,0.72–1.99,0.486
