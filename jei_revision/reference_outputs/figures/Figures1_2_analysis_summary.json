@@ -1,0 +1,100 @@
+{
+  "inputs": [
+    {
+      "filename": "OS_eligible_cohort.csv",
+      "sha256": "b7b9aa9e0269060e9bdd4981c053716b69d0ea07ff4b0c17785a1c9d32e85b18"
+    },
+    {
+      "filename": "subtype_statistics.csv",
+      "sha256": "f29bdf77aa0c14c5634e078b10f9d55dc08f6d92e5dc968ca00ee2bd80dcaf37"
+    }
+  ],
+  "Figure1": {
+    "groups": [
+      {
+        "group": "PTEN-altered",
+        "patients_n": 146,
+        "deaths_n": 20,
+        "censored_n": 126,
+        "maximum_observed_duration_months": 129.7,
+        "KM_median_months": null
+      },
+      {
+        "group": "PTEN-unaltered",
+        "patients_n": 352,
+        "deaths_n": 65,
+        "censored_n": 287,
+        "maximum_observed_duration_months": 225.33,
+        "KM_median_months": 110.55
+      }
+    ],
+    "logrank_statistic": 4.227592677225761,
+    "logrank_p_value": 0.0397718127447267,
+    "unadjusted_Cox_HR": 0.5933614251133766,
+    "CI_95_lower": 0.3587873122809481,
+    "CI_95_upper": 0.9812994182382989,
+    "unadjusted_Cox_p_value": 0.04200093838639948,
+    "display_window_months": [
+      0,
+      120
+    ],
+    "all_recorded_followup_used": true,
+    "extrapolation_used": false,
+    "risk_count_definition": "Observed duration >= displayed time (start-of-time risk set)"
+  },
+  "Figure2": {
+    "patients_n": 507,
+    "altered_n": 173,
+    "chi_square_statistic": 53.27217984294502,
+    "degrees_of_freedom": 3,
+    "chi_square_p_value": 1.604049400471193e-11,
+    "confidence_interval": "Wilson 95%",
+    "counts_and_percentages": [
+      {
+        "subtype": "POLE-ultramutated",
+        "raw_subtype": "UCEC_POLE",
+        "total_n": 49,
+        "altered_n": 16,
+        "unaltered_n": 33,
+        "altered_fraction": 0.3265306122448979,
+        "altered_percent": 32.6530612244898,
+        "wilson_ci95_lower_percent": 21.207497001811866,
+        "wilson_ci95_upper_percent": 46.62079468542984
+      },
+      {
+        "subtype": "MSI-hypermutated",
+        "raw_subtype": "UCEC_MSI",
+        "total_n": 148,
+        "altered_n": 59,
+        "unaltered_n": 89,
+        "altered_fraction": 0.3986486486486486,
+        "altered_percent": 39.86486486486486,
+        "wilson_ci95_lower_percent": 32.329301538847474,
+        "wilson_ci95_upper_percent": 47.91324866252652
+      },
+      {
+        "subtype": "Copy-number low",
+        "raw_subtype": "UCEC_CN_LOW",
+        "total_n": 147,
+        "altered_n": 76,
+        "unaltered_n": 71,
+        "altered_fraction": 0.5170068027210885,
+        "altered_percent": 51.70068027210885,
+        "wilson_ci95_lower_percent": 43.68269837204032,
+        "wilson_ci95_upper_percent": 59.632040187962296
+      },
+      {
+        "subtype": "Copy-number high",
+        "raw_subtype": "UCEC_CN_HIGH",
+        "total_n": 163,
+        "altered_n": 22,
+        "unaltered_n": 141,
+        "altered_fraction": 0.1349693251533742,
+        "altered_percent": 13.496932515337424,
+        "wilson_ci95_lower_percent": 9.084952769173366,
+        "wilson_ci95_upper_percent": 19.58984974026149
+      }
+    ]
+  },
+  "png_dpi": 300
+}

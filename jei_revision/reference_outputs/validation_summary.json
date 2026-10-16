@@ -1,16 +1,31 @@
 {
-  "date": "2026-10-07",
+  "date": "2026-10-16",
   "python": "3.12.14",
   "execution_method": "Sequential IPython cell execution with captured real outputs",
-  "total_cells": 54,
-  "executed_code_cells": 27,
+  "total_cells": 56,
+  "executed_code_cells": 28,
   "errors": 0,
-  "elapsed_seconds": 19.21,
-  "required_revision_outputs": 15,
+  "elapsed_seconds": 20.97,
+  "required_revision_outputs": 19,
   "required_revision_outputs_missing": 0,
   "formatted_manuscript_cells_matched": 165,
   "model_rows_matched": 30,
   "coefficient_rows_matched": 78,
   "PH_diagnostic_rows_matched": 78,
-  "reference_values_differing": 0
+  "reference_values_differing": 0,
+  "ipython": "9.6.0",
+  "manuscript_figures": 4,
+  "reference_csv_files_reproduced_exactly": 20,
+  "input_checksum_comparison_ignores_local_paths_only": true,
+  "embedded_notebook_images_match_generated_pngs": true,
+  "embedded_image_sha256": {
+    "Figure1_Kaplan_Meier.png": "816932b94b70d610eeceb0dae848d9b6771210fcc3cd4b6a984bac6a856b7cf7",
+    "Figure2_Subtype_frequency.png": "1371706ece5fedcd8d9a9132a4c533907bf16778fdc98ffed8c09aab751acb8a",
+    "Figure3_Cox_models.png": "0f0138af3a28d83b8e51ebd6e3ac01a66dd930d13e0e501450887404e3248c07",
+    "Figure4_PFS_PFI_Kaplan_Meier.png": "e1c6e3451901fd627d5b4061962d255ba7f852265bf57841ed5c0ebc22ce40ca"
+  },
+  "archive_includes_all_four_png_pdf_pairs": true,
+  "archive_contains_patient_datasets": false,
+  "original_reference_validation_date": "2026-10-07",
+  "colab_interface_exercised": false
 }

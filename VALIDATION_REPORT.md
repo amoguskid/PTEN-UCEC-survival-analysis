@@ -2,11 +2,42 @@
 
 ## Validation dates
 
+- All-four-figure notebook validation: **October 16, 2026**
 - JEI revision notebook validation: **October 7, 2026**
 - Clean-run analysis validation: **July 15, 2026**
 - Public repository completion update: **August 13, 2026**
 
 The July date records the two clean runs described below. The August date records the later update that added the complete reproducibility files to the public repository; it is not a second analysis-validation date.
+
+## Full notebook and Figures 1–4 validation — October 16, 2026
+
+The updated master notebook contains 56 cells, including 28 code cells. All 28
+code cells were executed from top to bottom in a fresh Python 3.12.14 process
+using IPython 9.6.0 and the pinned analysis dependencies in
+`jei_revision/requirements.txt`. Real stream and display outputs were captured
+and saved in the notebook. No code cells failed.
+
+The run recreated the original four phases and manuscript Figures 1–4 and
+Tables 1–3. Section 20 now calls `jei_revision/make_figures1_2.py` using the
+regenerated OS cohort and subtype statistics, and a new display cell shows
+Figures 1–2 before the existing Figure 3 and Figure 4 displays. The original
+Phase 4 figure files remain available separately.
+
+Checks on the final run confirmed:
+
+- All 19 required revision outputs were present, including PNG and vector PDF versions of all four manuscript figures.
+- All four embedded notebook PNG images were byte-identical to their generated figure files.
+- All 20 existing reference CSV files reproduced exactly row for row. The input-checksum comparison ignored only the local file-path column; filenames, byte sizes, and hashes matched.
+- The matching CSVs include all 30 model rows, 78 coefficient rows, 78 proportional-hazards rows, Tables 1–3, cohort counts, age and Kaplan–Meier summaries, log-rank tests, mutation summaries, and Figure 4 risk counts.
+- Figure 1 reproduced the 498-patient cohort, the unadjusted HR of 0.593361 and log-rank p of 0.0397718, the observed unaltered median of 110.55 months, and the unreached altered median. Its 12 displayed risk counts matched the manuscript.
+- Figure 2 reproduced all four subtype counts and percentages for 507 tumors. Its Wilson intervals matched the source subtype-statistics output within 1e-12; the chi-square statistic was 53.27217984 with p=1.6040494e-11.
+- The final Figures 1–2 PNG and PDF layouts were visually checked, including separation between the Figure 1 risk-row labels and first counts. Figures 3–4 retained their existing manuscript layouts and numerical values.
+- `JEI_figures_and_tables.zip` contained all four PNG/PDF pairs plus tables and model/audit results. Patient-level `data_processed/` files were excluded.
+
+The original seven source exports and the checksum-verified TCGA-CDR workbook
+were used for this local execution. The Colab upload and download interface
+was not exercised. No new statistical endpoints, patient exclusions,
+subtype-specific survival analyses, or null-only mutation analyses were added.
 
 ## JEI revision validation — October 7, 2026
 

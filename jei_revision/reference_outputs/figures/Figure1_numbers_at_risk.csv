@@ -1,0 +1,13 @@
+group,time_months,at_risk_at_start_of_time
+PTEN-altered,0,146
+PTEN-altered,24,103
+PTEN-altered,48,68
+PTEN-altered,72,33
+PTEN-altered,96,6
+PTEN-altered,120,1
+PTEN-unaltered,0,352
+PTEN-unaltered,24,199
+PTEN-unaltered,48,90
+PTEN-unaltered,72,42
+PTEN-unaltered,96,19
+PTEN-unaltered,120,6
