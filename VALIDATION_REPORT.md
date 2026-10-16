@@ -39,6 +39,22 @@ were used for this local execution. The Colab upload and download interface
 was not exercised. No new statistical endpoints, patient exclusions,
 subtype-specific survival analyses, or null-only mutation analyses were added.
 
+## Table 1 overall-median display correction — October 16, 2026
+
+The Table 1 renderer now applies the existing median-display rule to the Overall
+column as well as the two PTEN groups. The pooled 498-patient Kaplan–Meier
+estimate never reached 0.5 and ended at 0.5169951057, so the overall median is
+shown as **Not reached**. Its numeric `KM_median_months` field remains missing;
+no numeric KM-summary or model data were filled or changed.
+
+A fresh execution completed all 28 code cells without errors and captured the
+updated Table 1 display in the notebook. Regression checks confirmed:
+
+- Only the Overall median cell changed in `Table1.csv` and `Table1B_survival_cohort.csv`; the altered median remained Not reached and the unaltered median remained 110.6 months.
+- `Table1.html` contains the same corrected cell, and its obsolete intentional-blank explanation was removed.
+- Generated and reference Table 1 files, the saved notebook HTML display, and the ZIP table entries are synchronized byte for byte.
+- The numeric KM summary, model-comparison, coefficient and proportional-hazards CSVs, Table 1A, and Tables 2–3 remained byte-identical to their pre-correction files.
+
 ## JEI revision validation — October 7, 2026
 
 The revised master notebook contains 54 cells, including 27 code cells. All 27

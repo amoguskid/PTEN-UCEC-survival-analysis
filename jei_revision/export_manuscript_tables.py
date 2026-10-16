@@ -194,9 +194,9 @@ def make_table1(input_root, table_root):
         f"{integer(groups[n]['age_years_missing_or_nonnumeric_n'])}" for n in GROUPS])
     rows_b.append(["Deaths"] + [str(integer(groups[n]["deaths_n"])) for n in GROUPS])
     rows_b.append(["Censored"] + [str(integer(groups[n]["censored_n"])) for n in GROUPS])
-    rows_b.append(["Median overall survival (months)", ""] + [
+    rows_b.append(["Median overall survival (months)"] + [
         rounded(km[n]["KM_median_months"], 1) if km[n]["KM_median_months"] else "Not reached"
-        for n in GROUPS[1:]])
+        for n in GROUPS])
     headers_b = ["Measure", *GROUPS]
     combined = [["A. PTEN status reconstruction", "", "", ""]]
     combined.extend([r[0], r[1], "", ""] for r in rows_a)
@@ -208,7 +208,7 @@ def make_table1(input_root, table_root):
     notes = [
         "Tumors were classified as PTEN-altered if they had a reported PTEN mutation, a GISTIC −2 deep deletion, or a GISTIC +2 amplification. High-level copy-number alteration includes GISTIC −2 or +2.",
         "Censored counts equal patients minus deaths. Median survival is the first recorded time at which the Kaplan–Meier estimate reaches 50% or below. No extrapolation was used. Censoring is accounted for in the risk sets, so the Kaplan–Meier estimate can reach 50% even when fewer than half of the original patients have recorded deaths.",
-        "Age is reported as the median and interquartile range (IQR, 25th–75th percentiles) among patients with available age data. Available and missing age counts are shown separately. The overall median-survival cell is left blank to match the manuscript table.",
+        "Age is reported as the median and interquartile range (IQR, 25th–75th percentiles) among patients with available age data. Available and missing age counts are shown separately.",
     ]
     unaltered = km["PTEN-unaltered"]
     if unaltered["KM_median_months"]:

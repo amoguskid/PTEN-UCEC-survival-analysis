@@ -5,7 +5,7 @@
   "total_cells": 56,
   "executed_code_cells": 28,
   "errors": 0,
-  "elapsed_seconds": 20.97,
+  "elapsed_seconds": 16.03,
   "required_revision_outputs": 19,
   "required_revision_outputs_missing": 0,
   "formatted_manuscript_cells_matched": 165,
@@ -27,5 +27,9 @@
   "archive_includes_all_four_png_pdf_pairs": true,
   "archive_contains_patient_datasets": false,
   "original_reference_validation_date": "2026-10-07",
-  "colab_interface_exercised": false
+  "colab_interface_exercised": false,
+  "table1_overall_median_display": "Not reached",
+  "table1_overall_numeric_median_remains_missing": true,
+  "table1_numeric_KM_and_model_outputs_unchanged": true,
+  "table1_generated_reference_notebook_and_zip_synchronized": true
 }
